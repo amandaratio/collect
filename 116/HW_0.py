@@ -1,4 +1,11 @@
 
+# comments
+
+a = 1 # won't be appended
+x = a # won't be appended
+b = x % a # won't be appended
+
+
 def fast2Power(a, n, m):#jsjs
     x = 1
     while n > 0:

@@ -33,8 +33,6 @@ def collect_functions(from_file, to_file, OVWR=False, r=".*"):
         (default is NONE --> selects files with extention .py)
     
     """
-    assert os.path.isfile(to_file) and to_file.endswith('.py')
-
     this = os.path.abspath(__file__)
 
     def write(from_file, to_file, OVWR=False):
@@ -44,7 +42,7 @@ def collect_functions(from_file, to_file, OVWR=False, r=".*"):
                 data = f.read()
 
                 with open(to_file, mode) as to:
-                    to.write("\n# ************* {} ************* #\n".format(from_file))
+                    to.write("\n# ************* {} ************* #\n".format(os.path.basename(from_file)))
                     in_func = False
                     for line in data.splitlines():
                         func = re.fullmatch('def\s[a-zA-Z0-9_]+\(.*\):\s*#*.*', line)
@@ -71,7 +69,7 @@ def collect_functions(from_file, to_file, OVWR=False, r=".*"):
     if os.path.isdir(from_file):
         if OVWR:
             if os.path.exists(to_file): os.remove(to_file)
-        files = [f for f in os.listdir(from_file) if re.fullmatch(r, f) and f.endswith('.py') and f != to_file and os.path.abspath(f) != this]
+        files = [from_file + f for f in os.listdir(from_file) if re.fullmatch(r, f) and f.endswith('.py') and f != to_file and os.path.abspath(f) != this]
         for f in files:
             write(f, to_file)
     elif os.path.isfile(from_file):
