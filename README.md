@@ -1,6 +1,6 @@
 # collect + export functions via command line
 
-> extracts all functions + import statements from a specific file or a collection of files from a directory and exports to another file [^1]
+> extracts all functions + import statements from a specific file or a collection of files from a directory and exports to another file [^1] . collection of functions can be easily accessed via import statement `from [file_name] import *`
 
 
 [^1]: compatible with only python syntax (next language to be suppported: elixir)
